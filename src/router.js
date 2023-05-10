@@ -6,6 +6,7 @@ import SignUp from "./pages/SignUP";
 import FindEmail from "./pages/FindEmail";
 import ForgotPassword from "./pages/ForgotPassword";
 import Profile from "./pages/Profile";
+import ProductDetail from "./pages/ProductDetail";
 
 const Router = createBrowserRouter([
     {
@@ -31,6 +32,10 @@ const Router = createBrowserRouter([
     {
         path : "/profile",
         element : <Profile />
+    },
+    {
+        path : "/:productId",
+        element : <ProductDetail />
     }
 ])
 

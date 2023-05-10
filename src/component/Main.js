@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Button, Card, Carousel, Col, Container, Row} from "react-bootstrap";
 import one from "../img/one.jpg"
 import axios from "axios";
+import {Link} from "react-router-dom";
 
 const Main = () => {
 
@@ -58,57 +59,32 @@ const Main = () => {
             {/*benner*/}
 
             <Carousel nextLabel={""} prevLabel={""}>
-
-                <Carousel.Item>
-                    <img
-                        className="d-block w-100"
-                        src={one}
-                        alt="First slide"
-                    />
-                    <Carousel.Caption>
-                        <h3>First slide label</h3>
-                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                    </Carousel.Caption>
-                </Carousel.Item>
-
-                <Carousel.Item>
-                    <img
-                        className="d-block w-100"
-                        src={one}
-                        alt="First slide"
-                    />
-                    <Carousel.Caption>
-                        <h3>First slide label</h3>
-                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                    </Carousel.Caption>
-                </Carousel.Item>
-
-                <Carousel.Item>
-                    <img
-                        className="d-block w-100"
-                        src={one}
-                        alt="First slide"
-                    />
-                    <Carousel.Caption>
-                        <h3>First slide label</h3>
-                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                    </Carousel.Caption>
-                </Carousel.Item>
-
-
+                {carouselItem && carouselItem.map(e => (
+                    <Carousel.Item>
+                        <img
+                            className={e.title}
+                            src={e.img}
+                            alt={e.desc}
+                        />
+                        <Carousel.Caption>
+                            <h3 style={{color: 'white'}}>{e.desc}</h3>
+                            <p>{e.label}</p>
+                        </Carousel.Caption>
+                    </Carousel.Item>
+                ))}
             </Carousel>
 
         {/*  itemCard  */}
 
             <Container>
                 <Row>
-                    <Col className={'mt-5'}>
-                        {products && products.map(m => (
+                    {products && products.map(m => (
+                        <Col className={'mt-5'}>
                             <Card style={{ width: '18rem' }} className={"mt-4"}>
                                 <Card.Img
-                                variant="top"
-                                src={m.image}
-                                />
+                                    variant="top"
+                                    src={m.image}
+                                    />
                                 <Card.Body>
                                     <Card.Title>{m.name}</Card.Title>
                                     <Card.Text>
@@ -121,13 +97,13 @@ const Main = () => {
                                         Some quick example text to build on the card title and make up the
                                         bulk of the card's content.
                                     </Card.Text>
-                                    <Button variant="primary">Go somewhere</Button>
+                                    <Link to={`/${m._id}`}>
+                                        <Button varian="primary">Go somewhere</Button>
+                                    </Link>
                                 </Card.Body>
                             </Card>
+                            </Col>
                         ))}
-
-
-                    </Col>
                 </Row>
             </Container>
 
